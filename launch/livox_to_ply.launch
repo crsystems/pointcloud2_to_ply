@@ -1,0 +1,6 @@
+<launch>
+	<arg name="topic" default="/livox/lidar" />
+	<arg name="dest" default="/tmp/output.ply" />
+
+	<node name="$(anon livox_to_ply)" pkg="livox_to_ply" type="client" args="$(arg dest) $(arg topic)" />
+</launch>
