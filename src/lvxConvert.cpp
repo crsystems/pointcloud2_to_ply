@@ -5,11 +5,12 @@
 
 class LvxConvert {
 	public:
-		//LvxConvert(){}
-
 		LvxConvert(std::string s)
 		{
-			finalFileHandle.open(s);
+			numPoints = 0;
+			infoNumber = 1;
+
+			finalFileHandle.open(s.c_str());
 			tmpFileHandle.open("/tmp/livox_convert_tmp", std::fstream::in | std::fstream::out | std::fstream::trunc);
 		}
 
@@ -43,15 +44,18 @@ class LvxConvert {
 
 		void processPointCloudMessageCallback (const sensor_msgs::PointCloud2::ConstPtr pcloud)
 		{
-			ROS_INFO("Processing %u points in this package", (unsigned int) pcloud->width);
+			if(numPoints >= infoNumber*100000){
+				ROS_INFO("[livox_to_ply] Processed %u points", (unsigned int) infoNumber*100000);
+				infoNumber++;
+			}
 
 			int step = (int) pcloud->point_step;
 			unsigned int points = (unsigned int) pcloud->width;
 
-			float *dat = (float *) pcloud->data.data();
+			char *dat = (char *) pcloud->data.data();
 
 			for(unsigned int i = 0; i < points; i++){
-				float *coord = dat + i*step/4;
+				float *coord = (float *) (dat + i*step);
 				tmpFileHandle << *coord << " " << *(coord + 1) << " " << *(coord + 2) << " " << *(coord + 3) << "\n";
 				numPoints++;
 			}
@@ -59,7 +63,8 @@ class LvxConvert {
 
 
 	private:
-		unsigned long int numPoints = 0;
+		int infoNumber;
+		unsigned long int numPoints;
 		std::fstream   tmpFileHandle;
 		std::ofstream  finalFileHandle;
 };
