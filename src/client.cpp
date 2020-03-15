@@ -8,8 +8,8 @@ int main(int argc, char** argv)
 
 	ros::NodeHandle n;
 
-	if(argc < 3){
-		ROS_FATAL("Supplied with too few arguments (%d instead of 2)! Quitting", argc-1);
+	if(argc < 4){
+		ROS_FATAL("Supplied with too few arguments (%d instead of 3)! Quitting", argc-1);
 		return 1;
 	}
 
@@ -17,8 +17,7 @@ int main(int argc, char** argv)
 	
 	ros::Subscriber laser_sub = n.subscribe(std::string(argv[2]), 1000, &LvxConvert::processPointCloudMessageCallback, conv);
 	
-	ros::Subscriber xsens_sub = n.subscribe("/imu/data", 1000, &LvxConvert::processOrientationMessageCallback, conv);
-
+	ros::Subscriber xsens_sub = n.subscribe(std::string(argv[3]), 1000, &LvxConvert::processOrientationMessageCallback, conv);
 
 	ros::spin();
 
