@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "sensor_msgs/PointCloud2.h"
+#include "sensor_msgs/Imu.h"
+#include "geometry_msgs/Quaternion.h"
 #include "ros/ros.h"
 
 class LvxConvert {
@@ -59,6 +61,11 @@ class LvxConvert {
 				tmpFileHandle << *coord << " " << *(coord + 1) << " " << *(coord + 2) << " " << *(coord + 3) << "\n";
 				numPoints++;
 			}
+		}
+
+		void processOrientationMessageCallback (const sensor_msgs::Imu::ConstPtr geom)
+		{
+			ROS_INFO("Orientation x value is : %f", (double) geom->orientation.x);
 		}
 
 

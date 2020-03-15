@@ -15,7 +15,10 @@ int main(int argc, char** argv)
 
 	LvxConvert *conv = new LvxConvert(std::string(argv[1]));
 	
-	ros::Subscriber sub = n.subscribe(std::string(argv[2]), 1000, &LvxConvert::processPointCloudMessageCallback, conv);
+	ros::Subscriber laser_sub = n.subscribe(std::string(argv[2]), 1000, &LvxConvert::processPointCloudMessageCallback, conv);
+	
+	ros::Subscriber xsens_sub = n.subscribe("/imu/data", 1000, &LvxConvert::processOrientationMessageCallback, conv);
+
 
 	ros::spin();
 
