@@ -202,9 +202,12 @@ include_directories(
 # catkin_add_nosetests(test)
 
 add_executable(client src/client.cpp)
+add_executable(driftCheck src/driftCheck.cpp)
+
 add_library(lvxConvert STATIC src/lvxConvert.cpp)
 add_library(atomicOrientation STATIC src/atomicOrientation.cpp)
 
 add_dependencies(lvxConvert atomicOrientation)
 
 target_link_libraries(client lvxConvert ${catkin_LIBRARIES})
+target_link_libraries(driftCheck ${catkin_LIBRARIES})

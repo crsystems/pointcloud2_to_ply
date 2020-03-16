@@ -4,8 +4,5 @@
 	<arg name="dest" default="/tmp/output.ply" />
 	<arg name="orientation" default="true" />
 
-	<include file="$(find livox_ros_driver)/launch/livox_lidar.launch" />
-	<include file="$(find xsens_mti_driver)/launch/xsens_driver.launch" /> 
-
 	<node name="$(anon livox_to_ply)" pkg="livox_to_ply" type="client" args="$(arg dest) $(arg livox_topic) $(arg xsens_topic) $(arg orientation)" />
 </launch>

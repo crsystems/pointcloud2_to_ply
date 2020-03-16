@@ -1,0 +1,5 @@
+<launch>
+	<arg name="xsens_topic" default="/filter/quaternion" />
+
+	<node name="$(anon xsens_drift_tester)" pkg="livox_to_ply" type="driftCheck" args="$(arg xsens_topic)" />
+</launch>
