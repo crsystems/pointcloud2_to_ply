@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(livox_to_ply)
+project(pointcloud2_to_ply)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -201,7 +201,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(client src/client.cpp)
+add_executable(pcloudConvert src/client.cpp)
 add_executable(driftCheck src/driftCheck.cpp)
 
 add_library(lvxConvert STATIC src/lvxConvert.cpp)
@@ -209,5 +209,5 @@ add_library(atomicOrientation STATIC src/atomicOrientation.cpp)
 
 add_dependencies(lvxConvert atomicOrientation)
 
-target_link_libraries(client lvxConvert ${catkin_LIBRARIES})
+target_link_libraries(pcloudConvert lvxConvert ${catkin_LIBRARIES})
 target_link_libraries(driftCheck ${catkin_LIBRARIES})

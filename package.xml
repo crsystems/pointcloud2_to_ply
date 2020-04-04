@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>livox_to_ply</name>
+  <name>pointcloud2_to_ply</name>
   <version>0.0.1</version>
-  <description>The livox_to_ply package</description>
+  <description>The pointcloud2_to_ply package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

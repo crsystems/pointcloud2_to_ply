@@ -4,5 +4,5 @@
 	<arg name="dest" default="/tmp/output.ply" />
 	<arg name="orientation" default="true" />
 
-	<node name="$(anon livox_to_ply)" pkg="livox_to_ply" type="client" args="$(arg dest) $(arg livox_topic) $(arg xsens_topic) $(arg orientation)" />
+	<node name="$(anon pointcloud2_to_ply)" pkg="pointcloud2_to_ply" type="client" args="$(arg dest) $(arg livox_topic) $(arg xsens_topic) $(arg orientation)" />
 </launch>
