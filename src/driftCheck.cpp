@@ -2,6 +2,7 @@
 #include "sensor_msgs/Imu.h"
 #include "geometry_msgs/QuaternionStamped.h"
 #include <cstring>
+#include <iostream>
 
 double first[4], current[4];
 
@@ -28,8 +29,12 @@ void testDriftCallbackImu(sensor_msgs::Imu::ConstPtr geom)
 		current[2] = (double) geom->orientation.y;
 		current[3] = (double) geom->orientation.z;
 
+		// Human readable for ROS
 		ROS_INFO("Diff to start: %f, %f, %f, %f --- Diff to last: %f, %f, %f, %f", diff[0], diff[1], diff[2], diff[3], diff[4], diff[5], diff[6], diff[7]);
 		
+		// And the easy to parse version to stdout
+		std::cout << diff[0] << "," << diff[1] << "," << diff[2] << "," << diff[3] << ",";
+		std::cout << diff[4] << "," << diff[5] << "," << diff[6] << "," << diff[7] << "\n";
 	}
 }
 
@@ -56,8 +61,12 @@ void testDriftCallbackQuaternion(geometry_msgs::QuaternionStamped::ConstPtr geom
 		current[2] = (double) geom->quaternion.y;
 		current[3] = (double) geom->quaternion.z;
 
+		// Human readable format for ROS
 		ROS_INFO("Diff to start: %f, %f, %f, %f --- Diff to last: %f, %f, %f, %f", diff[0], diff[1], diff[2], diff[3], diff[4], diff[5], diff[6], diff[7]);
 		
+		// And the easy to parse version to stdout
+		std::cout << diff[0] << "," << diff[1] << "," << diff[2] << "," << diff[3] << ",";
+		std::cout << diff[4] << "," << diff[5] << "," << diff[6] << "," << diff[7] << "\n";
 	}
 }
 
