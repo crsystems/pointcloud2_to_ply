@@ -29,12 +29,12 @@ void testDriftCallbackImu(sensor_msgs::Imu::ConstPtr geom)
 		current[2] = (double) geom->orientation.y;
 		current[3] = (double) geom->orientation.z;
 
-		// Human readable for ROS
+		// Human readable for ROS and stdout
 		ROS_INFO("Diff to start: %f, %f, %f, %f --- Diff to last: %f, %f, %f, %f", diff[0], diff[1], diff[2], diff[3], diff[4], diff[5], diff[6], diff[7]);
 		
-		// And the easy to parse version to stdout
-		std::cout << diff[0] << "," << diff[1] << "," << diff[2] << "," << diff[3] << ",";
-		std::cout << diff[4] << "," << diff[5] << "," << diff[6] << "," << diff[7] << "\n";
+		// And the easy to parse version to stderr
+		std::cerr << diff[0] << "," << diff[1] << "," << diff[2] << "," << diff[3] << ",";
+		std::cerr << diff[4] << "," << diff[5] << "," << diff[6] << "," << diff[7] << "\n";
 	}
 }
 
@@ -61,12 +61,12 @@ void testDriftCallbackQuaternion(geometry_msgs::QuaternionStamped::ConstPtr geom
 		current[2] = (double) geom->quaternion.y;
 		current[3] = (double) geom->quaternion.z;
 
-		// Human readable format for ROS
+		// Human readable format for ROS and stdout
 		ROS_INFO("Diff to start: %f, %f, %f, %f --- Diff to last: %f, %f, %f, %f", diff[0], diff[1], diff[2], diff[3], diff[4], diff[5], diff[6], diff[7]);
 		
-		// And the easy to parse version to stdout
-		std::cout << diff[0] << "," << diff[1] << "," << diff[2] << "," << diff[3] << ",";
-		std::cout << diff[4] << "," << diff[5] << "," << diff[6] << "," << diff[7] << "\n";
+		// And the easy to parse version to stderr
+		std::cerr << diff[0] << "," << diff[1] << "," << diff[2] << "," << diff[3] << ",";
+		std::cerr << diff[4] << "," << diff[5] << "," << diff[6] << "," << diff[7] << "\n";
 	}
 }
 
